@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+
+	<title>vue-homeworkDemo</title>
+</head>
+<body>
+<div id=app @click="updated" @dblclick="deleted" >
+	<p >{{message}}</p>
+	
+<!-- 单击触发updated生命周期，双击触发destroyed生命周期--></div>
+<script>
+	let app=new Vue({
+	el:"#app",
+	data:{message:"当你看到此段文字时Vue的生命周期已从beforeCreate->created->beforeMount->mounted 可在控制台查看输出信息，悬停文字试探Vue 实例是否作用，单击文字触发updated生命周期，双击文字触发destroyed生命周期"},
+	methods:{
+		updated(){
+			this.message="生命周期已由mounted->beforeUpdate->updated"
+		},
+		deleted(){
+
+			this.$destroy()
+		}
+	},
+
+	beforeCreate:()=>{console.log("beforeCreate")},
+	created:()=>{ console.log("created")},
+	beforeMount:()=>{ console.log("beforeMount")},
+	mounted:()=>{console.log("mounted")},
+	beforeUpdate:()=>console.log("beforeUpdate"),
+	updated:()=>console.log("updated"),
+	beforeDestroy:()=>console.log("beforeDestroy"),
+	destroyed:()=>console.log("destroyed")
+	   })
+	// activated:()=>console.log("activated"),
+	// deactivated:()=>console.log("deactivated"),
+	// errorCaptured:()=>console.log("errorCaptured")
+
+
+</script>
+</body>
+</html>
